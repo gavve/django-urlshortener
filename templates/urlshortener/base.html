@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{% if urlExists %}
+    <p>The url: <a href="{{ urlExists }}">{{ urlExists }}</a> is already in our system.</p>
+    <p>Here is the shortening for that url: <a href="{{ short_url }}">{{ short_url }}</a>.</p>
+    <hr />
+    <p>Just go ahead and shorten another link instead cause it's so much fun :)</p>
+{% endif %}
+<form action="{% url "generate-short-url" %}" method="POST">
+    {% csrf_token %}
+    {{ urlForm }}
+    <button type="submit">Generate short Url</button>
+</form>
+<p>{{ success }} <a href="{{ short_url }}">{{ short_url }}</a>.</p>
+
+</body>
+</html>
